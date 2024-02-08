@@ -80,7 +80,7 @@ end
 """
 
     expected_output = """on System#Boot then #HWSTS = 1;setTimer(3,60);end
-on CWDC then $WTWW = 32;$OTWW = 14;$WTCW = 41;$OTCW = -4;#HWSTS = $WTWW;if @Outside_Temp >= $OTWW then #HWSTS = $WTWW;elseif @Outside_Temp <= $OTCW then #HWSTS = $WTCW;else #HWSTS = $WTWW +(($OTWW - @Outside_Temp) *($WTCW - $WTWW) /($OTWW - $OTCW));end end
+on CWDC then $WTWW = 32;$OTWW = 14;$WTCW = 41;$OTCW = -4;#HWSTS = $WTWW;if @Outside_Temp >= $OTWW then #HWSTS = $WTWW;elseif @Outside_Temp <= $OTCW then #HWSTS = $WTCW;else #HWSTS = $WTWW + (($OTWW - @Outside_Temp) * ($WTCW - $WTWW) / ($OTWW - $OTCW));end end
 on ?roomTemp then CWDC();$M = 0.25;$S = ?roomTempSet;if ?roomTemp > ($S + $M) then if @Heatpump_State == 1 then @SetHeatpump = 0;end elseif ?roomTemp < ($S - $M) then if @Heatpump_State == 0 then @SetHeatpump = 1;end else @SetZ1HeatRequestTemperature = round(#HWSTS);end end
 on timer=3 then $S1 = 0;$SV = 1;$SV1 = 2;$SV3 = 3;$SV2 = 4;setTimer(3,60);end 
 """

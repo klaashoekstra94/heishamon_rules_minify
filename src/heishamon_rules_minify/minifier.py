@@ -52,19 +52,20 @@ class Minifier:
         text = re.sub(r"^[\t| ]+|[\t| ]+$", "", text, flags=re.MULTILINE)
 
         # Remove newline after line ending with 'then' or 'else'
-        text = re.sub(r"(?<=then|else)\r{0,1}\n{1}", " ", text, flags=re.MULTILINE)
+        text = re.sub(r"(?<=then|else)\r?\n", " ", text, flags=re.MULTILINE)
 
         # Remove newline after line ending with all possible operators
-        text = re.sub(r"(?<=[;=&|<>\-+%*\/^()])\r{0,1}\n{1}", "", text, flags=re.MULTILINE)
+        text = re.sub(r"(?<=[;=&|<>\-+%*\/^()])\r?\n", "", text, flags=re.MULTILINE)
+
+        # Remove extra spaces that are present after removing newlines
+        text = re.sub(r"(?<=[;=&|<>\-+%*\/^()]) *(?=\S)(?!then)", "", text, flags=re.MULTILINE)
 
         # Remove newline after line ending with 'end', except for last end of function
         text = re.sub(r"(?<=end)\s*(?!\s*on |\Z)", " ", text, flags=re.MULTILINE)
 
-        # Correct spaces around equal signs
-        text = re.sub(r"(?<![<>]) *= *(?=-*\d;|[#$@%?].+;)", " = ", text, flags=re.MULTILINE)
-
-        # Correct spaces around double equal signs
-        text = re.sub(r" *== *", " == ", text, flags=re.MULTILINE)
+        # Correct spaces around operators and functions
+        text = re.sub(r"(?<!timer)( *(==|>=|<=|[=+\*\/%&|<>^]) *)(?=-?\d|\b|[(#$@%?].+(;|then|end))", r" \g<2> ", text, flags=re.MULTILINE)
+        text = re.sub(r"(?<!=)(?<!= ) *- *(?=-*\d|[(#$@%?].+(;|then|end))", " - ", text, flags=re.MULTILINE)
 
         # Remove all spaces around comma signs
         text = re.sub(r"(?<=[)_A-Za-z0-9]) *, *\s*(?=[$#@?_A-Za-z0-9])", ",", text, flags=re.MULTILINE)

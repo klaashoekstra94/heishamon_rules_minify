@@ -5,12 +5,12 @@
 
 This project aims to overcome these issues by making it possible write a ruleset with comments and descriptive function and variables names, and then minifying it. This way it is still possible to maximize the number of rules on the HeishaMon.
 
-_Note: The current minifier has been written to work with [this updated rule libaray version](https://github.com/IgorYbema/HeishaMon/pull/121)_
+_Note: The minifier should work for both the rule library used in version 3.2.3 and [this updated rule libaray version](https://github.com/IgorYbema/HeishaMon/pull/121). In the rule library from version 3.2.3, the elseif statement cannot be used_
 
 ## Installation
 
 ```sh
-python3 -m pip install . heishamon_rules_minify
+python3 -m pip install heishamon_rules_minify
 ```
 
 ## Usage example
