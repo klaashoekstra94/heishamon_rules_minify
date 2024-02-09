@@ -61,11 +61,12 @@ class Minifier:
         text = re.sub(r"(?<=[;=&|<>\-+%*\/^()]) *(?=\S)(?!then)", "", text, flags=re.MULTILINE)
 
         # Remove newline after line ending with 'end', except for last end of function
-        text = re.sub(r"(?<=end)\s*(?!\s*on |\Z)", " ", text, flags=re.MULTILINE)
+        text = re.sub(r"(?<=end)\s+(?!\s*on |\Z)", " ", text, flags=re.MULTILINE)
 
         # Correct spaces around operators and functions
-        text = re.sub(r"(?<!timer)( *(==|>=|<=|[=+\*\/%&|<>^]) *)(?=-?\d|\b|[(#$@%?].+(;|then|end))", r" \g<2> ", text, flags=re.MULTILINE)
+        text = re.sub(r"(?<!timer)( *(==|!=|>=|<=|\|\||&&|[=+\*\/<>^]) *)(?=-?\d|\b|[(#$@%?].+(;|then|end))", r" \g<2> ", text, flags=re.MULTILINE)
         text = re.sub(r"(?<!=)(?<!= ) *- *(?=-*\d|[(#$@%?].+(;|then|end))", " - ", text, flags=re.MULTILINE)
+        text = re.sub(r" *% *(?=-*\d|[(#$@%?].+(;|then|end))", " % ", text, flags=re.MULTILINE)
 
         # Remove all spaces around comma signs
         text = re.sub(r"(?<=[)_A-Za-z0-9]) *, *\s*(?=[$#@?_A-Za-z0-9])", ",", text, flags=re.MULTILINE)
