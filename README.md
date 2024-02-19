@@ -18,7 +18,7 @@ python3 -m pip install heishamon_rules_minify
 Start by creating a ruleset that adheres to the HeishaMon rules syntax, but can use the following extras:
 
 - Single line comments starting with `--` or block comments between `--[[` and `]]`.
-- Custom function and variable names will be minified to only keep the first letter (which will be capitalised) and capital letters, so for example `#WaterTemperature` will become `#WT`, `#allowDHW` will become `ADHW`.
+- Custom function and variable names will be minified to only keep the first letter (which will be capitalised) and capital letters, so for example `#WaterTemperature` will become `#WT`, `#allowDHW` will become `#ADHW`.
 
 When the ruleset is finished, minify it using the following command:
 
