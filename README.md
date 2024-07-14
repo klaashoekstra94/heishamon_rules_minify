@@ -28,10 +28,19 @@ heishamon-rules-minify [input_file] [output_file]
 
 This will shorten all custom function and variable names and remove all unneeded spaces and newlines.
 
+### Extra options
+There are a couple of extra options to pass with the minifier:
+* `--print` or `-p` to also print the output on the command line.
+* `--comments_only` or `-c` to only remove the comments from the input file but do no further minifying.
+
 ## Release History
 
-* 0.0.1
+* [0.0.1](https://github.com/klaashoekstra94/heishamon_rules_minify/releases/tag/v0.0.1)
     * Initial version
+* [0.0.2](https://github.com/klaashoekstra94/heishamon_rules_minify/releases/tag/v0.0.2)
+    * Fix incorrect spacing for double operators, minor bugfixes
+* [0.0.3](https://github.com/klaashoekstra94/heishamon_rules_minify/releases/tag/v0.0.3)
+    * Add option to only remove comments
 
 ## Contributing
 
