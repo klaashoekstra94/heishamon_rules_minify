@@ -140,7 +140,8 @@ def test_minifier_comments_only():
     #quietModeHelper = 1;
     #quietModePrevious = -1;
 
-    setTimer(3, 60);end
+    setTimer(3, 60);
+end
   
 on CalculateWeatherDependentControl then
     $WaterTemperatureWarmWeather = 32;

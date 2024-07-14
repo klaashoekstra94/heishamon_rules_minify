@@ -45,8 +45,11 @@ class Minifier:
         # Remove comment blocks
         text = re.sub(r"--\[\[[^\]\]]*]]", "", input_text, flags=re.MULTILINE)
 
-        # Remove single-line comments
-        text = re.sub(r"[ \t]*--(?!\[\[).*\r?\n", "", text, flags=re.MULTILINE)
+        # Remove lines consisting entirely of single-line comments
+        text = re.sub(r"^[ \t]*--(?!\[\[).*\r?\n", "", text, flags=re.MULTILINE)
+
+        # Remove single line comments at end of lines
+        text = re.sub(r"[ \t]*--(?!\[\[).*(?=\r?\n)", "", text, flags=re.MULTILINE)
 
         if comments_only:
             # Remove newlines at start of file
