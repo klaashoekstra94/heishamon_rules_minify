@@ -41,6 +41,8 @@ There are a couple of extra options to pass with the minifier:
     * Fix incorrect spacing for double operators, minor bugfixes
 * [0.0.3](https://github.com/klaashoekstra94/heishamon_rules_minify/releases/tag/v0.0.3)
     * Add option to only remove comments
+* [0.0.4](https://github.com/klaashoekstra94/heishamon_rules_minify/releases/tag/v0.0.4)
+    * Fix extra space being added after the minus sign of negative values
 
 ## Contributing
 

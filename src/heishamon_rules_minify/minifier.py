@@ -18,7 +18,7 @@ class Minifier:
             flags=re.MULTILINE,
         )
         text = re.sub(
-            r"(?<![=<>(,])(?<![=<>(,] ) *- *(?=-*\d|[(#$@%?].+(;|then|end|$))", " - ", text, flags=re.MULTILINE
+            r"(?<![=<>(,\-+%*\/^])(?<![=<>(,\-+%*\/^] ) *- *(?=-*\d|[(#$@%?].+(;|then|end|$))", " - ", text, flags=re.MULTILINE
         )
         text = re.sub(r" *% *(?=-*\d|[(#$@%?].+(;|then|end|$))", " % ", text, flags=re.MULTILINE)
 

@@ -116,8 +116,18 @@ on timer=3 then
     $someValue = 1;
     $SomeValue = 2;
     $SoveValue3 = 3;
-    $SomeValuee = 4;
+    $SomeValuee = -4;
     setTimer(3, 60);
+end
+
+on timer=4 then
+    -- Check not adding an extra space after a minus sign
+    #RoomTempControl = round(#RoomTempDelta + -3);
+    #RoomTempControl = round(#RoomTempDelta - -3);
+    #RoomTempControl = round(#RoomTempDelta / -3);
+    #RoomTempControl = round(#RoomTempDelta * -3);
+    #RoomTempControl = round(#RoomTempDelta % -3);
+    #RoomTempControl = round(#RoomTempDelta ^ -3);
 end
 """
 
@@ -128,7 +138,8 @@ on CWDC then $WTWW = 32;$OTWW = 14;$WTCW = 41;$OTCW = -4;#HWSTS = $WTWW;if @Outs
 on SQM then if #ASQM == 1 then if isset(@Outside_Temp) && isset(@Heatpump_State) then if #QMH == 1 then if @Outside_Temp < 13 then #QM = 1;else #QM = 2;end if @Outside_Temp < 8 then #QM = 0;end if @Outside_Temp < 2 then if %hour > 22 || %hour < 7 then #QM = 1;else #QM = 0;end end if #QMP != #QM && @Heatpump_State == 1 then setTimer(2,900);#QMH = 0;#QMP = #QM;@SetQuietMode = #QM;end end end end end
 on ?roomTemp then $M = 0.25;$S = ?roomTempSet;if ?roomTemp > ($S + $M) then if @Heatpump_State == 1 then @SetHeatpump = 0;end else if ?roomTemp < ($S - $M) then if @Heatpump_State == 0 then @SetHeatpump = 1;end else @SetZ1HeatRequestTemperature = round(#HWSTS);end end end
 on timer=2 then #QMH = 1;#QM = 0;end
-on timer=3 then $S1 = 0;$SV = 1;$SV1 = 2;$SV3 = 3;$SV2 = 4;setTimer(3,60);end
+on timer=3 then $S1 = 0;$SV = 1;$SV1 = 2;$SV3 = 3;$SV2 = -4;setTimer(3,60);end
+on timer=4 then #RTC = round(#RTD + -3);#RTC = round(#RTD - -3);#RTC = round(#RTD / -3);#RTC = round(#RTD * -3);#RTC = round(#RTD % -3);#RTC = round(#RTD ^ -3);end
 """
     output = Minifier.minify(input_text)
     assert output == expected_output
@@ -222,8 +233,17 @@ on timer=3 then
     $someValue = 1;
     $SomeValue = 2;
     $SoveValue3 = 3;
-    $SomeValuee = 4;
+    $SomeValuee = -4;
     setTimer(3, 60);
+end
+
+on timer=4 then
+    #RoomTempControl = round(#RoomTempDelta + -3);
+    #RoomTempControl = round(#RoomTempDelta - -3);
+    #RoomTempControl = round(#RoomTempDelta / -3);
+    #RoomTempControl = round(#RoomTempDelta * -3);
+    #RoomTempControl = round(#RoomTempDelta % -3);
+    #RoomTempControl = round(#RoomTempDelta ^ -3);
 end
 """
     output = Minifier.minify(input_text, comments_only=True)
